@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+    
+
+    
+<struts>
+     <package name="UserAction" extends="struts-default,json-default" namespace="/User">
+    
+    <action name="*User" class="action.UserAction" method="{1}User">
+               <result type="json">
+               <param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据。 -->
+               <param name="includeProperties">
+               user_r.*        
+               </param>
+               </result>
+                <result name="queryReserve" type="redirectAction">queryReserve</result> 
+    </action>
+
+     <action name="*Reserve" class="action.ReserveAction" method="{1}Reserve">
+             <result name="queryReserve" type="redirectAction">queryReserve</result>
+             <result name="index.jsp">../index.jsp</result>
+              <result type="json">
+               <param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据。 -->
+               <param name="includeProperties">
+               msg     
+               </param>
+               </result>
+     </action>
+
+   </package>
+
+</struts>
